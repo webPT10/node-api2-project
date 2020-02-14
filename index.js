@@ -1,6 +1,6 @@
 const express = require("express");
-const seedsRouter = require('./data/seeds/seeds-router') // router
-const seedsPostsRouter = require('./data/seeds/seeds-postsRouter'); // sub-router
+const seedsRouter = require('./routers/seeds-router') // router
+const seedsPostsRouter = require('./routers/seeds-postsRouter'); // sub-router
 
 const server = express();
 const port = 8000;

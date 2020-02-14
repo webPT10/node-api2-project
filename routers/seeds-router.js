@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('../db');
+const db = require('../data/db');
 
 const router = express.Router();
 // creates a new sub-Router
@@ -26,8 +26,19 @@ router.post('/api/posts', (request, response) => {
     })
 })
 
-router.post('/', (request, response) => {
+router.post('/api/posts/:id/comments', (request, response) => {
+    if(!request.body.id){
+        response.status(404).json({
+            message: 'The post with the specified ID does not exist.'
+        })
+    }
+    if(!request.body.text){
+        response.status(400).json({
+            errorMessage: "Please provide text for the comment."
+        })
+    }
 
+    db.
 })
 
 // GET
