@@ -1,0 +1,18 @@
+const express = require("express");
+const seedsRouter = require('./data/seeds/seeds-router') // router
+const seedsPostsRouter = require('./data/seeds/seeds-postsRouter'); // sub-router
+
+const server = express();
+const port = 8000;
+
+server.use(express.json());
+server.use('/', seedsRouter)
+server.use('/api/posts', seedsPostsRouter)
+
+server.get("/", (request, response) => {
+  response.send("Nil Satis Nisi Optimum");
+});
+
+server.listen(port, () => {
+  console.log(`Server running @ http://localhost:${port}`);
+});
