@@ -111,7 +111,29 @@ router.get("/:id/comments", (request, response) => {
 });
 
 // PUT
-router.put("/", (request, response) => {});
+router.put("/:id", (request, response) => {
+    const { id } = request.params;
+    const { title, contents } = request.body;
+
+    if(!id){
+        response.status(404).json({ message: "The post with the specified ID does not exist." })
+    } else if (!title || !contents){
+        response.status(400).json({ errorMessage: "Please provide title and contents for the post." })
+    } else 
+        db.findById(id)
+            .then(post => {
+                db.update(id, {title, contents})
+                    .then(post => {
+                        response.status(200).json(post)
+                    })
+                    .catch(error => {
+                        response.status(500).json({ error: "Server failed to retrieve the post after changes." })
+                    })
+            })
+            .catch(error => {
+                response.status(500).json({ error: "The post information could not be modified." })
+            })
+});
 
 // Delete
 router.delete("/", (request, response) => []);
