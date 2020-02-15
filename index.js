@@ -5,9 +5,9 @@ const seedsPostsRouter = require('./routers/seeds-postsRouter'); // sub-router
 const server = express();
 const port = 8000;
 
-server.use(express.json());
-server.use('/', seedsRouter)
-server.use('/api/posts', seedsPostsRouter)
+server.use(express.json()); // in index or seeds-router?
+server.use('/api/posts', seedsRouter)
+// server.use('/api/posts', seedsPostsRouter)
 
 server.get("/", (request, response) => {
   response.send("Nil Satis Nisi Optimum");
