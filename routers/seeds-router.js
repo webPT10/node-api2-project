@@ -52,19 +52,27 @@ router.post("/:id/comments", (request, response) => {
             response.status(201).json(comment);
           })
           .catch(error => {
-            response
-              .status(500)
-              .json({
-                error:
-                  "There was an error while saving the comment to the database."
-              });
+            response.status(500).json({
+              error:
+                "There was an error while saving the comment to the database."
+            });
           });
       }
     });
 });
 
 // GET
-router.get("/", (request, response) => {});
+router.get("/", (request, response) => {
+  db.find()
+    .then(posts => {
+      response.status(201).json(posts);
+    })
+    .catch(error => {
+      response
+        .status(500)
+        .json({ error: "The posts information could not be retrieved." });
+    });
+});
 
 router.get("/", (request, response) => {});
 
