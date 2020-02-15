@@ -74,7 +74,25 @@ router.get("/", (request, response) => {
     });
 });
 
-router.get("/", (request, response) => {});
+router.get("/:id", (request, response) => {
+  const { id } = request.params;
+
+  db.findById(id)
+    .then(post => {
+      if (post) {
+        response.status(201).json(post);
+      } else {
+        response
+          .status(404)
+          .json({ message: " The post with the specified ID does not exist" });
+      }
+    })
+    .catch(error => {
+      response
+        .status(500)
+        .json({ error: "The post information could not be retrieved." });
+    });
+});
 
 router.get("/", (request, response) => {});
 
