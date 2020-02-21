@@ -1,6 +1,6 @@
 const express = require("express");
 const seedsRouter = require('./routers/seeds-router') // router
-const seedsPostsRouter = require('./routers/seeds-postsRouter'); // sub-router
+// const seedsPostsRouter = require('./routers/seeds-postsRouter'); // sub-router
 
 const server = express();
 const port = 8000;
@@ -10,7 +10,9 @@ server.use('/api/posts', seedsRouter)
 // server.use('/api/posts', seedsPostsRouter)
 
 server.get("/", (request, response) => {
-  response.send("Nil Satis Nisi Optimum");
+  response.status(200).json({
+    message: process.env.SECRET_MESSAGE || "Why, Hello there.",
+  })
 });
 
 server.listen(port, () => {
