@@ -3,7 +3,7 @@ const seedsRouter = require('./routers/seeds-router') // router
 // const seedsPostsRouter = require('./routers/seeds-postsRouter'); // sub-router
 
 const server = express();
-const port = 8000;
+const port = process.env.PORT || 8000;
 
 server.use(express.json()); // in index or seeds-router?
 server.use('/api/posts', seedsRouter)
